@@ -1,0 +1,1558 @@
+/* Reset dan Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000;
+    /* Hitam dominan */
+    color: #FFFFFF;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Container untuk centering */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigasi Bar dengan Hamburger */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: #000000;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: #FFFFFF;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Animasi Hamburger saat active (X shape) */
+.nav-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.nav-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 10px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #666666;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #CCCCCC;
+}
+
+/* Mobile Nav Menu */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: #000000;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding-top: 20px;
+        transition: left 0.3s ease;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #333333;
+    }
+}
+
+/* Header Hero Section dengan Background Image */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 150px 0 100px;
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Overlay Gelap untuk Readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.hero>.container {
+    position: relative;
+    z-index: 2;
+}
+
+.name {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+}
+
+.profession {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #CCCCCC;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #FFFFFF;
+    text-align: justify;
+    hyphens: auto;
+    word-wrap: break-word;
+}
+
+/* Section Portfolio */
+.portfolio {
+    padding: 80px 0;
+    background-color: #111111;
+    /* Abu gelap */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #FFFFFF;
+}
+
+/* Grid untuk Portfolio Cards menggunakan CSS Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Kartu Proyek */
+.portfolio-card {
+    background-color: #222222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Styling untuk Link Gambar di Portfolio */
+.project-link {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styling untuk Link Gambar di Portfolio dengan Lightbox */
+.project-link {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.project-link img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.project-link:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.card-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: var(--gray-medium);
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.card-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.project-link img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.project-link:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+/* Pastikan card tetap responsif */
+.portfolio-card:hover .project-link {
+    opacity: 0.9;
+}
+
+.portfolio-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgb(71, 71, 71);
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+}
+
+.card-desc {
+    color: #CCCCCC;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.card-link {
+    color: #666666;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover {
+    color: #FFFFFF;
+}
+
+/* Animasi Fade-in untuk Cards */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-card.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+
+/* Section Contact */
+.contact {
+    padding: 80px 0;
+    background-color: #000000;
+}
+
+.contact-desc {
+    text-align: center;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    color: #CCCCCC;
+}
+
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto 40px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #222222;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+/* Ikon WA */
+.contact-form button::before {
+    content: '📱';
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.contact-form button {
+    background-color: #25D366
+}
+
+.contact-form button:hover {
+    background-color: #128C7E;
+    color: #ffffff;
+}
+
+/* Info Kontak Rapi */
+.contact-info {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #FFFFFF;
+    font-weight: 400;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #222222;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid #333333;
+    min-height: 80px;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    border-color: #666666;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    /* Ikon besar di desktop */
+    margin-bottom: 10px;
+    color: #CCCCCC;
+    transition: color 0.3s ease;
+}
+
+.contact-item:hover i {
+    color: #FFFFFF;
+}
+
+/* Warna Ikon Spesifik per Platform saat Hover */
+.contact-item[href^="mailto:"]:hover i {
+    color: #FF6B35;
+}
+
+.contact-item[href*="linkedin"]:hover i {
+    color: #0077B5;
+}
+
+.contact-item span:first-of-type {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.contact-detail {
+    font-size: 0.9rem;
+    color: #999999;
+    word-break: break-all;
+    text-align: center;
+}
+
+/* Feedback Form Kontak */
+.form-feedback {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    display: none;
+}
+
+.form-feedback.success {
+    background-color: #25D366;
+    color: #FFFFFF;
+    border: 1px solid #25D366;
+}
+
+.form-feedback.error {
+    background-color: #222222;
+    color: #FF0000;
+    border: 1px solid #FF0000;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000000;
+    color: #666666;
+}
+
+.footer a {
+    color: #666666;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #FFFFFF;
+}
+
+/* Login dan Admin Panel */
+.login-container,
+.admin-panel {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    padding-top: 80px;
+    flex-direction: column;
+}
+
+.login-container form,
+.admin-panel form {
+    background-color: #222222;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-container h2,
+.admin-panel h2,
+.admin-panel h3 {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+input,
+textarea,
+button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    background-color: #333333;
+    color: #FFFFFF;
+    font-size: 1rem;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #666666;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 15px;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.error {
+    color: #FF0000;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.success {
+    color: #00FF00;
+    text-align: center;
+}
+
+.back-link {
+    display: inline-block;
+    background-color: #666666;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/* Admin Panel Styling (Update untuk Drag & Drop) */
+.admin-form {
+    background-color: #222222;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.admin-form h3 {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.admin-form input,
+.admin-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #FFFFFF;
+    font-size: 1rem;
+}
+
+.admin-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #666666;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.admin-form button:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/* Drag & Drop Zone Styling */
+.drag-zone {
+    border: 2px dashed #666666;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #111111;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.drag-zone:hover,
+.drag-zone.drag-over {
+    border-color: #25D366;
+    background-color: #1a1a1a;
+}
+
+.drag-zone i {
+    font-size: 3rem;
+    color: #CCCCCC;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.drag-zone p {
+    color: #CCCCCC;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.drag-zone .clickable {
+    color: #25D366;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.drag-zone .drag-hint {
+    color: #999999;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Preview Gambbar */
+.image-preview {
+    position: relative;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#removeImage {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Project List (Existing) */
+.project-list {
+    margin-top: 40px;
+    background-color: #222222;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #333333;
+    border-radius: 5px;
+    color: #CCCCCC;
+}
+
+.project-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: #666666;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #0077B5;
+}
+
+.delete-btn:hover {
+    background-color: #CC0000;
+}
+
+/* Responsif untuk Drag Zone */
+@media (max-width: 768px) {
+    .drag-zone {
+        padding: 30px 15px;
+    }
+
+    .drag-zone i {
+        font-size: 2.5rem;
+    }
+
+    .drag-zone p {
+        font-size: 0.95rem;
+    }
+
+    .image-preview img {
+        max-height: 150px;
+    }
+
+    .admin-form {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    .project-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .project-item img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+    }
+}
+
+.login-container,
+.admin-panel {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    padding-top: 80px;
+}
+
+.login-container form,
+.admin-panel form {
+    background-color: #222222;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Styling Daftar Proyek di Admin */
+.project-list {
+    margin-top: 40px;
+    background-color: #222222;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.project-list h3 {
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    font-size: 1.2rem;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #333333;
+    border-radius: 5px;
+    color: #CCCCCC;
+    font-size: 0.9rem;
+}
+
+.project-item strong {
+    color: #FFFFFF;
+}
+
+.delete-btn {
+    background-color: #FF0000;
+    /* Merah untuk hapus */
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #CC0000;
+}
+
+/* Styling untuk Feedback Form Kontak */
+.form-feedback {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    display: none;
+}
+
+.form-feedback.success {
+    background-color: #222222;
+    color: #00FF00;
+    border: 1px solid #00FF00;
+}
+
+.form-feedback.error {
+    background-color: #222222;
+    color: #FF0000;
+    border: 1px solid #FF0000;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000000;
+    color: #666666;
+}
+
+.footer a {
+    color: #666666;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #FFFFFF;
+}
+
+/* Animasi Fade-in untuk Cards */
+.portfolio-card.visible {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Tablet: 768px - 1024px */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .nav-menu {
+        gap: 30px;
+    }
+
+    .name {
+        font-size: 2.5rem;
+    }
+
+    .profession {
+        font-size: 1.3rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        max-width: 500px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        /* 2 kolom */
+        gap: 25px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .contact-form {
+        max-width: 450px;
+    }
+
+    .hero {
+        padding: 130px 0 80px;
+    }
+}
+
+/* Mobile: <768px */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Navigasi Mobile: Hamburger */
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: #000000;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding-top: 20px;
+        transition: left 0.3s ease;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #333333;
+    }
+
+    /* Hero Mobile: Kurangi height dan parallax */
+    .hero {
+        padding: 100px 0 50px;
+        min-height: 80vh;
+        background-attachment: scroll;
+    }
+
+    .name {
+        font-size: 2rem;
+    }
+
+    .profession {
+        font-size: 1.2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    /* Portfolio Mobile: 1 kolom */
+    .portfolio {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .portfolio-card img {
+        height: 180px;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-desc {
+        font-size: 0.95rem;
+    }
+
+    .form-feedback {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1rem;
+        display: none;
+    }
+
+    .form-feedback.success {
+        background-color: #222222;
+        color: #00FF00;
+        border: 1px solid #00FF00;
+    }
+
+    .form-feedback.error {
+        background-color: #222222;
+        color: #FF0000;
+        border: 1px solid #FF0000;
+    }
+
+
+    /* Section Contact Tombol WA */
+    .contact-form button {
+        width: 100%;
+        padding: 15px;
+        background-color: #25D366;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 1rem;
+        font-weight: 600;
+        position: relative;
+    }
+
+    /* Link WA di Contact Info (Styling Hijau) */
+    .contact-info a[href^="https://wa.me/08873434754"] {
+        color: #25D366;
+        font-weight: 600;
+    }
+
+    .contact-info a[href^="https://wa.me/08873434754"]:hover {
+        color: #128C7E;
+        text-decoration: underline;
+    }
+
+    /* Update Mobile untuk Tombol WA */
+    @media (max-width: 768px) {
+        .contact-form button {
+            padding: 18px;
+            font-size: 1.1rem;
+        }
+
+        .contact-form button::before {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+/* Styling Tombol Kembali ke Home di cv.html */
+.cv-page .back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.cv-page .back-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 18px;
+    background-color: var(--gray-dark);
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid var(--gray-medium);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+.cv-page .back-link::before {
+    content: '';
+    margin-right: 8px;
+    font-size: 1.2rem;
+    color: var(--gray-light);
+    transition: color 0.3s ease;
+}
+
+.cv-page .back-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(240, 237, 237, 0.2);
+}
+
+.cv-page .back-link:hover::before {
+    color: var(--primary-color);
+}
+
+/* Responsivitas untuk Tombol Kembali */
+@media (max-width: 768px) {
+    .cv-page .back-to-home {
+        top: 15px;
+        left: 15px;
+    }
+
+    .cv-page .back-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .cv-page .back-link::before {
+        font-size: 1.1rem;
+        margin-right: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv-page .back-to-home {
+        top: 10px;
+        left: 10px;
+    }
+
+    .cv-page .back-link {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .cv-page .back-link::before {
+        font-size: 1rem;
+        margin-right: 5px;
+    }
+}
+
+/* Styling Khusus untuk cv.html */
+.cv-page .hero {
+    position: relative;
+    text-align: center;
+    padding: 150px 0 100px;
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cv-page .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.cv-page .hero>.container {
+    position: relative;
+    z-index: 2;
+}
+
+.cv-page .name {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.cv-page .profession {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--gray-light);
+    margin-bottom: 20px;
+}
+
+.cv-page .description {
+    font-size: 1.1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--secondary-color);
+    text-align: justify;
+    hyphens: auto;
+    word-wrap: break-word;
+}
+
+.cv-page .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+}
+
+.cv-page .cv-section {
+    padding: 80px 0;
+    background-color: var(--gray-dark);
+}
+
+.cv-page .cv-text-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cv-page .cv-item {
+    background-color: var(--gray-dark);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.cv-page .cv-item:hover {
+    transform: translateY(-5px);
+}
+
+.cv-page .cv-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: rgba(240, 237, 237, 0.2);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.cv-page .cv-item p,
+.cv-page .cv-item li {
+    color: var(--gray-light);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+
+    .cv-page .cv-item p,
+    .cv-page .cv-item li {
+        margin-bottom: 12px;
+    }
+}
+
+
+.cv-page .cv-item ul {
+    list-style: inside;
+    padding-left: 20px;
+}
+
+.cv-page .cv-download-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.cv-page .cv-download {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--gray-medium);
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cv-page .cv-download:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.cv-page .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: var(--gray-medium);
+}
+
+.cv-page .footer a {
+    color: var(--gray-medium);
+    text-decoration: none;
+}
+
+.cv-page .footer a:hover {
+    color: var(--secondary-color);
+}
+
+/* Media Queries untuk Responsivitas di cv.html */
+@media (max-width: 1024px) {
+    .cv-page .container {
+        padding: 0 15px;
+    }
+
+    .cv-page .nav-menu {
+        gap: 30px;
+    }
+
+    .cv-page .name {
+        font-size: 2.5rem;
+    }
+
+    .cv-page .profession {
+        font-size: 1.3rem;
+    }
+
+    .cv-page .description {
+        font-size: 1rem;
+        max-width: 500px;
+    }
+
+    .cv-page .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .cv-page .section-title {
+        font-size: 2.2rem;
+    }
+
+    .cv-page .contact-form {
+        max-width: 450px;
+    }
+
+    .cv-page .hero {
+        padding: 130px 0 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cv-page .container {
+        padding: 0 15px;
+    }
+
+    .cv-page .nav-toggle {
+        display: flex;
+    }
+
+    .cv-page .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--primary-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding-top: 20px;
+        transition: left 0.3s ease;
+    }
+
+    .cv-page .nav-menu.active {
+        left: 0;
+    }
+
+    .cv-page .nav-link {
+        font-size: 1.2rem;
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--gray-medium);
+    }
+
+    .cv-page .hero {
+        padding: 100px 0 50px;
+        min-height: 80vh;
+        background-attachment: scroll;
+    }
+
+    .cv-page .name {
+        font-size: 2rem;
+    }
+
+    .cv-page .profession {
+        font-size: 1.2rem;
+    }
+
+    .cv-page .description {
+        font-size: 1rem;
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    .cv-page .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .cv-page .portfolio-card img {
+        height: 180px;
+    }
+
+    .cv-page .card-content {
+        padding: 15px;
+    }
+
+    .cv-page .card-title {
+        font-size: 1.2rem;
+    }
+
+    .cv-page .card-desc {
+        font-size: 0.95rem;
+    }
+
+    .cv-page .cv-section {
+        padding: 60px 0;
+    }
+
+    .cv-page .cv-item {
+        padding: 15px;
+    }
+
+    .cv-page .cv-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .cv-page .cv-item p,
+    .cv-page .cv-item li {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv-page .section-title {
+        font-size: 2rem;
+    }
+
+    .cv-page .cv-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .cv-page .cv-item p,
+    .cv-page .cv-item li {
+        font-size: 0.9rem;
+    }
+}
+
+/* Modal Full Page untuk Gambar */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #ccc;
+}
+
+.modal-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Untuk Galeri Multiple Images (Navigasi) */
+.modal-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-prev, .gallery-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 2rem;
+    padding: 10px;
+    user-select: none;
+}
+
+.gallery-prev { left: 10px; }
+.gallery-next { right: 10px; }
+
+.gallery-prev:hover, .gallery-next:hover {
+    color: #ccc;
+}

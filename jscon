@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Proyek 1: Website E-Commerce",
+        "description": "Desain minimalis untuk toko online dengan integrasi payment gateway.",
+        "image": "https://via.placeholder.com/400x200/000000/FFFFFF?text=Proyek+1",
+        "link": "https://example.com/proyek1"
+    },
+    {
+        "title": "Proyek 2: Aplikasi Mobile",
+        "description": "Aplikasi React Native untuk manajemen tugas dengan UI hitam elegan.",
+        "image": "https://via.placeholder.com/400x200/000000/FFFFFF?text=Proyek+2",
+        "link": "https://example.com/proyek2"
+    }
+]

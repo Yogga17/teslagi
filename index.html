@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Yogga Nanda Pratama</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk ikon contact (opsional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAoPrSLz2dRRvAwttA3_ps4C7h5Ynj6QT4",
+            authDomain: "portofolio-yogga.firebaseapp.com",
+            projectId: "portofolio-yogga",
+            storageBucket: "portofolio-yogga.firebasestorage.app",
+            messagingSenderId: "67248296073",
+            appId: "1:67248296073:web:105788cea160a0bf8cf658",
+            measurementId: "G-K21MKF101T"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        window.db = getFirestore(app);
+        window.storage = getStorage(app);
+        window.auth = getAuth(app); 
+    </script>
+
+</head>
+
+<body>
+    <!-- Navigasi Bar Mobile -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-toggle" id="navToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="cv.html" class="nav-link">CV</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a id="adminNavLink" href="admin.html" class="nav-link" style="display: none;">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="name">Yogga Nanda Pratama</h1>
+            <h2 class="profession">Design Editor - Operator Event</h2>
+            <p class="description">Saya adalah lulusan SMK jurusan Multimedia dan sedang berkuliah S1 Informatika di
+                Universitas Bali Internasional yang memiliki pengetahuan mendalam tentang dunia kreatif. Mampu bekerja
+                sama dalam kegiatan dunia kreatif seperti design grafis, fotografer, dan juga operator event.
+                Bersemangat untuk berkontribusi di bidang informatika dan multimedia untuk meningkatkan keahlian.
+                Tertarik untuk berkarier di lapangan pekerjaan yang dinamis dan dimana sesuai dengan kompetensi yang
+                saya miliki.</p>
+        </div>
+    </header>
+
+    <!-- Bagian Portfolio via JS -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio Saya</h2>
+            <div id="portfolio-grid" class="portfolio-grid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Saya</h2>
+            <p class="contact-desc">
+                Tertarik bekerja sama? Kirim pesan melalui form di bawah ini atau hubungi langsung via WhatsApp,
+                LinkedIn, atau Email.
+            </p>
+
+            <!-- Formulir WhatsApp -->
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="userName" placeholder="Nama Anda" required>
+                <input type="email" id="userEmail" placeholder="Email (Opsional)">
+                <textarea id="userMessage" placeholder="Pesan Anda..." rows="5" required></textarea>
+                <button type="submit">Kirim via WhatsApp</button>
+            </form>
+            <div id="formFeedback" class="form-feedback"></div>
+
+            <script>
+                document.getElementById('contactForm').addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    var name = document.getElementById('userName').value.trim();
+                    var email = document.getElementById('userEmail').value.trim();
+                    var message = document.getElementById('userMessage').value.trim();
+
+                    if (!name) {
+                        document.getElementById('formFeedback').innerHTML = 'Nama wajib diisi.';
+                        return;
+                    }
+
+                    if (!message) {
+                        document.getElementById('formFeedback').innerHTML = 'Pesan wajib diisi.';
+                        return;
+                    }
+
+                    var phoneNumber = '628873434754';
+                    var text = `Halooo,saya ${name}\nEmail: ${email ? email : 'Tidak disediakan'}\n\n${message}`;
+
+                    var encodedText = encodeURIComponent(text);
+
+                    var whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+
+                    window.open(whatsappURL, '_blank');
+                    document.getElementById('formFeedback').innerHTML = 'Mengalihkan ke WhatsApp...';
+                });
+            </script>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3 class="contact-subtitle">Kontak Langsung</h3>
+                <div class="contact-grid">
+                    <a href="https://linkedin.com/in/yogga-nanda-pratama-994987294" class="contact-item"
+                        target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                        <span class="contact-detail">Cek untuk selengkapnya</span>
+                    </a>
+                    <a href="mailto:yogga.bae2005@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                        <span class="contact-detail">yogga.bae2005@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Portfolio - Yogga
+                <a id="adminFooterLink" href="admin.html" style="display: none;"> | Admin Panel</a>
+            </p>
+        </div>
+    </footer>
+
+    <div id="imageModal" class="image-modal" style="display: none;">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
